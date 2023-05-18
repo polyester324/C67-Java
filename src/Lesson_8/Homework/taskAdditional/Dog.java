@@ -1,10 +1,10 @@
 package Lesson_8.Homework.taskAdditional;
 
 public class Dog{
-    private Dog() {
+    private Dog() { // конструктор с модификатором private не позволяет создавать объект в других классах
     }
 
-    static void voice() {
+    static void voice() { // запуск статического метода осуществляется без создания объекта
         System.out.println("Dog barks");
     }
 
