@@ -1,4 +1,6 @@
 package Lesson_9.homework.task2;
 
-public class Shape {
+public abstract class Shape {
+    abstract double square();
+    abstract double perimeter();
 }
