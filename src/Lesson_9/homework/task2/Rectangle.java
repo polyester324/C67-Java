@@ -2,7 +2,6 @@ package Lesson_9.homework.task2;
 
 public class Rectangle extends Shape{
     private double a, b;
-
     public Rectangle(double a, double b){
         this.a = a;
         this.b = b;

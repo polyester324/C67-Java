@@ -2,7 +2,6 @@ package Lesson_9.homework.task2;
 
 public class Triangle extends Shape{
     private double a, b , c, h;
-
     public Triangle(double a, double b, double c, double h){
         this.a = a;
         this.b = b;
