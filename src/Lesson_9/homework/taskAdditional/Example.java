@@ -11,7 +11,7 @@ public class Example implements Cloneable{
     }
 
     @Override
-    public Example clone() throws CloneNotSupportedException {
+    protected Example clone() throws CloneNotSupportedException {
         return (Example) super.clone();
     }
 }
