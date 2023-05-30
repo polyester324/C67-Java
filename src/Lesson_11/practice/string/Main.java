@@ -72,6 +72,5 @@ public class Main {
         System.out.println(line + 2);
         String six = String.valueOf(6); // из цифр в строки
         String bl = String.valueOf(true); // из boolean в строки
-
     }
 }
