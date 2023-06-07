@@ -35,7 +35,7 @@ public class User {
         if (login.length() > 20 || login.contains(" ")) {
             throw new WrongLoginException("Incorrect login");
         }
-        if (!password.matches("[0-9]") || password.contains(" ") || !password.equals(confirmPassword) || password.length() > 20) {
+        if (!password.matches(".*\\d+.*") || password.contains(" ") || !password.equals(confirmPassword) || password.length() > 20) {
             throw new WrongPasswordException("Incorrect password");
         }
         return true;
