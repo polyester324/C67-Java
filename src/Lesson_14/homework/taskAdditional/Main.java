@@ -1,31 +1,37 @@
-package Lesson_14.homework.task1;
+package Lesson_14.homework.taskAdditional;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.Comparator;
+import java.io.*;
+import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args){
-        File file = new File("src\\Lesson_14\\homework\\task1\\romeo-and-juliet.txt");
+    public static void main(String[] args) throws IOException {
+        Scanner scanner = new Scanner(System.in);
+        File file = new File(scanner.next());           // src\\Lesson_14\\homework\\taskAdditional\\docNumber.txt
+        File validFileReport = new File("src\\Lesson_14\\homework\\taskAdditional\\validFileReport.txt");
+        File invalidFileReport = new File("src\\Lesson_14\\homework\\taskAdditional\\invalidFileReport.txt");
         try (FileReader fr = new FileReader(file)){
             int i;
             StringBuilder newLine = new StringBuilder();
-            while ((i = fr.read()) != -1) {
+            while ((i = fr.read()) != -1){
                 newLine.append((char) i );
             }
-            String[] result = newLine.toString().split("[^A-z]");
-            //String[] result = newLine.toString().split("[^A-z-]"); // - если считать слова резделенные дефисами
-            Arrays.sort(result, Comparator.comparing(String::length));
-            File fileResult = new File("src\\Lesson_14\\homework\\task1\\fileResult.txt");
-            try (FileWriter fw = new FileWriter(fileResult)){ // true означает что мы не стираем информацию, написанную в file ранее
-                fw.write(result[result.length - 1]);
-                System.out.println("Longest word is written");
-            }catch (IOException e){
-                e.printStackTrace();
+            String[] result = newLine.toString().split("\n");
+            for (String s : result) {
+                if ((s.matches("docnum[^_]\\w[^_]+") || s.matches("contract[^_]\\w[^_]+")) && s.trim().length() == 15) {
+                    try (FileWriter fw = new FileWriter(validFileReport, true)) {
+                        fw.write(s);
+                    } catch (RuntimeException | IOException e) {
+                        System.out.println("IOException " + e);
+                    }
+                } else {
+                    try (FileWriter fw = new FileWriter(invalidFileReport, true)) {
+                        fw.write(s);
+                    } catch (RuntimeException | IOException e) {
+                        System.out.println("IOException " + e);
+                    }
+                }
             }
+            System.out.println("Document numbers were classified");
         }catch (RuntimeException | IOException e){
             System.out.println("Exception is found " + e);
         }
