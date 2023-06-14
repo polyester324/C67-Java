@@ -26,9 +26,20 @@ public class Student {
     }
 
     public static void remove(){
-        for (int i = 0 ; i< list.size(); i++){
-            if (list.get(i).grade < 3){
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).grade < 3) {
                 list.remove(i);
+                i--;
+            } else {
+                list.get(i).course = list.get(i).course + 1;
+            }
+        }
+    }
+
+    public static void printStudents(List<Student> students, int course){
+        for (Student st:students){
+            if (st.course == course){
+                System.out.println(st.name + " course: " + st.course);
             }
         }
     }
@@ -65,4 +76,13 @@ public class Student {
         this.grade = grade;
     }
 
+    @Override
+    public String toString() {
+        return "Student{" +
+                "name='" + name + '\'' +
+                ", group=" + group +
+                ", course=" + course +
+                ", grade=" + grade +
+                '}';
+    }
 }
