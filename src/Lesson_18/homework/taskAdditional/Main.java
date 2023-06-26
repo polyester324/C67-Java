@@ -2,7 +2,6 @@ package Lesson_18.homework.taskAdditional;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
@@ -22,10 +21,10 @@ public class Main {
         map.put(13, "Emily");
         List<String> list = map.keySet().stream()
                 .filter(integer -> integer == 1 || integer == 2 || integer == 5 || integer == 8 || integer == 9 || integer == 13)
-                .map(integer -> map.get(integer))
+                .map(map::get)
                 .filter(s -> s.length() % 2 != 0)
                 .map(s ->  new StringBuilder(s).reverse().toString())
-                .collect(Collectors.toList());
+                .toList();
         System.out.println(list);
     }
 }
